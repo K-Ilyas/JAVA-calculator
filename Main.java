@@ -10,6 +10,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("mainscene.fxml"));
         Scene scene = new Scene(root);
 
+        
         primaryStage.setTitle("Calculator JavaFX App");
         primaryStage.setResizable(false);
     

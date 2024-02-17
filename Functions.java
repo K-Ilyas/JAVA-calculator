@@ -1,38 +1,35 @@
-import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
+
 public class Functions {
 
-    public static TextArea formula;
-    public static TextField result;
     public static Controller controller = null;
 
-    public static void _init_(TextArea formula, TextField result, Controller controller) {
-        Functions.formula = formula;
-        Functions.result = result;
-        Functions.controller = controller;
-    }
+    public static void _init_(Controller controller) {
 
+        Functions.controller = controller;
+        System.out.println(controller);
+    }
+    
     public static void handleClickOperator(Button click) {
 
-        if (result.getText().indexOf("MAX_DIGIT") == -1) {
+        if (Functions.controller.getResult().getText().indexOf("MAX_DIGIT") == -1) {
             if (Functions.controller.getFinall() != 0 || Functions.controller.getFinall() == -1) {
-                result.setText(click.getText());
-                formula.setText((Functions.controller.getFinall() != -1 ? Functions.controller.getFinall() : 0)
+                Functions.controller.getResult().setText(click.getText());
+                Functions.controller.getFormula().setText((Functions.controller.getFinall() != -1 ? Functions.controller.getFinall() : 0)
                         + click.getText());
                 Functions.controller.setFinall(0);
             } else {
-                formula.setText(formula.getText() + result.getText());
-                String newresult = result.getText().concat(click.getText())
+                Functions.controller.getFormula().setText(Functions.controller.getFormula().getText() + Functions.controller.getResult().getText());
+                String newresult = Functions.controller.getResult().getText().concat(click.getText())
                         .replaceAll("(.+|\\.)([\\+\\-x\\/]){1}", "$2")
                         .replaceAll("([\\+-x\\/]){1}([\\+-x\\/]){1}", "$2");
 
-                result.setText(newresult);
+                Functions.controller.getResult().setText(newresult);
 
-                String newformula = formula.getText().concat(click.getText())
+                String newformula = Functions.controller.getFormula().getText().concat(click.getText())
                         .replaceAll("([-]+)([\\+x\\/]+)", "$2")
                         .replaceAll("^([-]){2,}", "-")
                         .replaceAll("([-]){2,}$", "-")
@@ -43,7 +40,7 @@ public class Functions {
                         .replaceAll("([\\+x\\/]){1,}([\\+x\\/]){1}$", "$2")
                         .replaceAll("(\\.)(-)", "-")
                         .replaceAll("NAN=\\sNAN", "");
-                formula.setText(newformula);
+                Functions.controller.getFormula().setText(newformula);
             }
         }
     }
@@ -61,18 +58,18 @@ public class Functions {
 
     public static void  handleClickNumbers(Button click) {
         if (Functions.controller.getFinall() != 0 || Functions.controller.getFinall() == -1) {
-            result.setText(click.getText());
-            formula.setText("");
+            Functions.controller.getResult().setText(click.getText());
+            Functions.controller.getFormula().setText("");
             Functions.controller.setFinall(0);
         } else {
-            if (result.getText().length() >= 22) {
-                String data = result.getText();
-                result.setText("MAX_DIGIT");
-                setTimeout(() -> result.setText(data), 2000);
+            if (Functions.controller.getResult().getText().length() >= 22) {
+                String data = Functions.controller.getResult().getText();
+                Functions.controller.getResult().setText("MAX_DIGIT");
+                setTimeout(() -> Functions.controller.getResult().setText(data), 2000);
 
-            } else if (result.getText() != "MAX_DIGIT") {
+            } else if (Functions.controller.getResult().getText() != "MAX_DIGIT") {
 
-                String newresult = result.getText().concat(click.getText())
+                String newresult = Functions.controller.getResult().getText().concat(click.getText())
                         .replaceAll("^(\\.)", "0.")
                         .replaceFirst("^(0)(\\d)", "$2")
                         .replaceAll("([\\-+x\\/])", "")
@@ -84,17 +81,17 @@ public class Functions {
                         .replaceAll("NAN", "0");
 
                 System.out.print(newresult + "        ");
-                result.setText(newresult);
-                String newformula = formula.getText();
-                formula.setText(newformula);
+                Functions.controller.getResult().setText(newresult);
+                String newformula = Functions.controller.getFormula().getText();
+                Functions.controller.getFormula().setText(newformula);
 
             }
         }
     }
 
     public static void handleClickResult() {
-        if (result.getText().indexOf("MAX_DIGIT") == -1) {
-            String newResult = (formula.getText() + result.getText())
+        if (Functions.controller.getResult().getText().indexOf("MAX_DIGIT") == -1) {
+            String newResult = (Functions.controller.getFormula().getText() + Functions.controller.getResult().getText())
                     .replaceAll("x", "*")
                     .replaceAll("--", " - -")
                     .replaceAll("^(\\.)$", "")
@@ -108,24 +105,23 @@ public class Functions {
                 System.out.println(newResult);
                 if (!newResult.equals("")) {
                     Expression e = new ExpressionBuilder(newResult).build();
-
                     try {
                         Functions.controller.setFinall(e.evaluate());
-                        result.setText(Functions.controller.getFinall() + "");
-                        formula.setText(newResult + "=" + result.getText());
+                        Functions.controller.getResult().setText(Functions.controller.getFinall() + "");
+                        Functions.controller.getFormula().setText(newResult + "=" + Functions.controller.getResult().getText());
 
                         if (Functions.controller.getFinall() == 0) {
                             Functions.controller.setFinall(-1);
                         }
                     } catch (Exception ex) {
-                        formula.setText("NAN= NAN");
-                        result.setText("NAN");
+                        Functions.controller.getFormula().setText("NAN= NAN");
+                        Functions.controller.getResult().setText("NAN");
                         Functions.controller.setFinall(-1);
                     }
 
                 } else {
-                    formula.setText("NAN= NAN");
-                    result.setText("NAN");
+                    Functions.controller.getFormula().setText("NAN= NAN");
+                    Functions.controller.getResult().setText("NAN");
                     Functions.controller.setFinall(-1);
                 }
             }
@@ -133,9 +129,9 @@ public class Functions {
     }
 
     public static void handleClearFormula() {
-        result.setText("0");
+        Functions.controller.getResult().setText("0");
         Functions.controller.setFinall(0);
-        formula.setText("");
+        Functions.controller.getFormula().setText("");
     }
 
 }
