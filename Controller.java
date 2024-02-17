@@ -100,36 +100,6 @@ public class Controller {
         System.out.println("Custom method executed!");
     }
 
-    // void handleClickOperator(Button click) {
-
-    // if (result.getText().indexOf("MAX_DIGIT") == -1) {
-    // if (finall != 0 || finall == -1) {
-    // result.setText(click.getText());
-    // formula.setText((finall != -1 ? finall : 0) + click.getText());
-    // finall = 0;
-    // } else {
-    // formula.setText(formula.getText() + result.getText());
-    // String newresult = result.getText().concat(click.getText())
-    // .replaceAll("(.+|\\.)([\\+\\-x\\/]){1}", "$2")
-    // .replaceAll("([\\+-x\\/]){1}([\\+-x\\/]){1}", "$2");
-
-    // result.setText(newresult);
-
-    // String newformula = formula.getText().concat(click.getText())
-    // .replaceAll("([-]+)([\\+x\\/]+)", "$2")
-    // .replaceAll("^([-]){2,}", "-")
-    // .replaceAll("([-]){2,}$", "-")
-    // .replaceAll("([\\+]){2,}", "+")
-    // .replaceAll("([\\/]){2,}", "/")
-    // .replaceAll("([x]){2,}", "x")
-    // .replaceAll("([\\+x\\/]){1}([\\-]){1,}$", "$1-")
-    // .replaceAll("([\\+x\\/]){1,}([\\+x\\/]){1}$", "$2")
-    // .replaceAll("(\\.)(-)", "-")
-    // .replaceAll("NAN=\\sNAN", "");
-    // formula.setText(newformula);
-    // }
-    // }
-    // }
 
     public void setFinall(double finall) {
         this.finall = finall;
@@ -139,95 +109,7 @@ public class Controller {
         return finall;
     }
 
-    // public static void setTimeout(Runnable runnable, int delayMillis) {
-    // new Thread(() -> {
-    // try {
-    // Thread.sleep(delayMillis);
-    // runnable.run();
-    // } catch (InterruptedException e) {
-    // e.printStackTrace();
-    // }
-    // }).start();
-    // }
-
-    // void handleClickNumbers(Button click) {
-    // if (finall != 0 || finall == -1) {
-    // result.setText(click.getText());
-    // formula.setText("");
-    // finall = 0;
-    // } else {
-    // if (result.getText().length() >= 22) {
-    // String data = result.getText();
-    // result.setText("MAX_DIGIT");
-    // setTimeout(() -> result.setText(data), 2000);
-
-    // } else if (result.getText() != "MAX_DIGIT") {
-
-    // String newresult = result.getText().concat(click.getText())
-    // .replaceAll("^(\\.)", "0.")
-    // .replaceFirst("^(0)(\\d)", "$2")
-    // .replaceAll("([\\-+x\\/])", "")
-    // .replaceAll("(\\-)(\\.)", "-0.")
-    // .replaceAll("^(\\.)$", "0$1")
-    // .replaceAll("^(0){2,}", "0")
-    // .replaceAll("(\\d)(\\.){2,}", "$1.")
-    // .replaceAll("(\\d+)(\\.)(\\d+)(\\.+)", "$1$2$3")
-    // .replaceAll("NAN", "0");
-
-    // System.out.print(newresult + " ");
-    // result.setText(newresult);
-    // String newformula = formula.getText();
-    // formula.setText(newformula);
-
-    // }
-    // }
-    // }
-
-    // void handleClickResult() {
-    // if (result.getText().indexOf("MAX_DIGIT") == -1) {
-    // String newResult = (formula.getText() + result.getText())
-    // .replaceAll("x", "*")
-    // .replaceAll("--", " - -")
-    // .replaceAll("^(\\.)$", "")
-    // .replaceFirst("^([\\+\\*\\/]*)", "")
-    // .replaceFirst("-$", "")
-    // .replaceAll("(\\d+)(\\D*)$", "$1")
-    // .replaceAll("=(\\s*)([0-9\\.]*)$", "")
-    // .replaceAll("NAN= NAN", "");
-
-    // if (finall == 0) {
-    // System.out.println(newResult);
-    // if (!newResult.equals("")) {
-    // Expression e = new ExpressionBuilder(newResult).build();
-
-    // try {
-    // finall = e.evaluate();
-    // result.setText(finall + "");
-    // formula.setText(newResult + "=" + result.getText());
-
-    // if (finall == 0) {
-    // finall = -1;
-    // }
-    // } catch (Exception ex) {
-    // formula.setText("NAN= NAN");
-    // result.setText("NAN");
-    // finall = 0;
-    // }
-
-    // } else {
-    // formula.setText("NAN= NAN");
-    // result.setText("NAN");
-    // finall = -1;
-    // }
-    // }
-    // }
-    // }
-
-    // void handleClearFormula() {
-    // result.setText("0");
-    // finall = 0;
-    // formula.setText("");
-    // }
+  
 
     @FXML
     void handleBtnAction(ActionEvent event) {
