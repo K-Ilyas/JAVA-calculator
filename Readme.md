@@ -27,3 +27,6 @@ To install and run CalculatorFX, follow these steps:
 
 Contributions are welcome! If you have any ideas, bug reports, or feature requests, please open an issue or submit a pull request.
 
+## Demo 
+![Screenshot 2024-02-17 143938](https://github.com/K-Ilyas/JAVA-calculator/assets/61426347/71c4324b-1723-45dc-8b2b-96750cb0ed17)
+
